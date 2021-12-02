@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Weather App</title>
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+            <div class="container__header">
+                <h1 class="header__app-title">Weather App</h1>
+                <form id="city">
+                <p>
+                    <input type="text" class="header__input" v-model="cityName" placeholder="Search a city...">
+                    {{cityName}}
+                </p>
+                </form>
+            </div>
+            <div class="container__result-box">
+                <div class="result-box__day-weather">
+                    <p class="day-weather__city-name">Paris, FR</p>
+                    <img class="day-weather__icon" :src="icons.cloud">
+                    <p class="day-weather__act-temp">30 °C</p>
+                    <div>
+                        <div>
+                            <img :src='icons.downarrow'>
+                            <p> 12 °C</p>
+                        </div>
+                        <div>
+                            <img :src='icons.uparrow'>
+                            <p> 33 °C</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="result-box__week-weather">
+
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+
+        
+    </div>
+<script>
+    var app = new Vue({
+  el: "#app",
+  data: {
+    user: "Snoopy",
+    cityName: "",
+    icons: {
+        cloud: "./assets/icons/cloud.png",
+        uparrow: "./assets/icons/arrow-up.png",
+        downarrow: "./assets/icons/arrow-down.png"
+    }
+  },
+});
+</script>
+
+    
+</body>
+</html>
