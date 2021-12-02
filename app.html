@@ -29,29 +29,46 @@
                     <p class="day-weather__city-name">Paris, FR</p>
                     <img class="day-weather__icon" :src="icons.cloud">
                     <p class="day-weather__act-temp">30 °C</p>
-                    <div>
-                        <div>
-                            <img :src='icons.downarrow'>
-                            <p> 12 °C</p>
+                    <div class="day-weather__min-max-temps">
+                        <div class="min-max-temps__min">
+                            <img class="min__icon" :src='icons.downarrow'>
+                            <p class="min_temp"> 12 °C</p>
                         </div>
-                        <div>
-                            <img :src='icons.uparrow'>
-                            <p> 33 °C</p>
+                        <div class="min-max-temps__max">
+                            <img class="max__icon" :src='icons.uparrow'>
+                            <p class="max__temp"> 33 °C</p>
                         </div>
                     </div>
                 </div>
                 <div class="result-box__week-weather">
-
+                    <div class="week-weather__box">
+                        <img class="day-weather__icon" :src="icons.cloud">
+                        <p class="day-weather__act-temp">30 °C</p>
+                    </div>
+                    <div class="week-weather__box">
+                        <img class="day-weather__icon" :src="icons.cloud">
+                        <p class="day-weather__act-temp">30 °C</p>
+                    </div>
+                    <div class="week-weather__box">
+                        <img class="day-weather__icon" :src="icons.cloud">
+                        <p class="day-weather__act-temp">30 °C</p>
+                    </div>
+                    <div class="week-weather__box">
+                        <img class="day-weather__icon" :src="icons.cloud">
+                        <p class="day-weather__act-temp">30 °C</p>
+                    </div>
+                    <div class="week-weather__box">
+                        <img class="day-weather__icon" :src="icons.cloud">
+                        <p class="day-weather__act-temp">30 °C</p>
+                    </div>
+                    <div class="week-weather__box">
+                        <img class="day-weather__icon" :src="icons.cloud">
+                        <p class="day-weather__act-temp">30 °C</p>
+                    </div>
+                    
                 </div>
-
-
             </div>
-
-
-
         </div>
-
-        
     </div>
 <script>
     var app = new Vue({
