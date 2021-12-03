@@ -4,6 +4,7 @@
     background-color:  rgb(63, 55, 201);
     color: white;
     font-family: 'Roboto', sans-serif;
+    min-height: 100vh;
 }
 
 .container {
@@ -32,15 +33,10 @@
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
-::placeholder {
-    color: rgba(57, 12, 163, 0.432);
+input[type="text"]
+{
     font-size: 1.5em;
-    margin-left: 4rem;
     padding: 1rem;
-}
-
-.container__result-box {
-
 }
 
 .result-box__day-weather {
@@ -52,7 +48,6 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     padding: 1rem;
     margin-bottom: 2.5rem;
-
 }
 
 .day-weather__city-name {
@@ -85,7 +80,6 @@
 
 .min__icon, .max__icon {
     height: 3rem;
-
 }
 
 .week-weather__box {

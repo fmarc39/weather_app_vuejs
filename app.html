@@ -47,46 +47,46 @@
                             <p class="week-weather__text-weather">{{day.weather.description}}</p>
                             <p class="week-weather__act-temp">{{day.temp}} °C</p>
                         </div>
-                    </template>
-                   
+                    </template>              
                 </div>
             </div>
         </div>
     </div>
 <script>
     var app = new Vue({
-  el: "#app",
-  data: {
-    cityName: "",
-    apiKey:"54dfb5713ed64c58a168401aa5a132fa",
-    baseUrl: 'https://api.weatherbit.io/v2.0/forecast/daily',
-    imageBaseUrl: 'https://www.weatherbit.io/static/img/icons/',
-    data: {},
-    forecast: [],
-    icons: {
-        uparrow: "./assets/icons/arrow-up.png",
-        downarrow: "./assets/icons/arrow-down.png"
-    }
-  },
-  methods: {
-    submitForm() {
-        fetch(`${this.baseUrl}?city=${this.cityName}&key=${this.apiKey}&lang=fr&days=7`)
-        .then((response) => {
-            this.cityName = "";
-            return response.json()
-        })
-        .then(this.setResult);
-    },
-
-    setResult(results) {
-this.data = results
-this.forecast = results.data
-this.forecast.shift();
-console.log(this.data)
-console.log(this.forecast)
-}
-},
-});
+        el: "#app",
+        data: {
+            cityName: "",
+            apiKey:"54dfb5713ed64c58a168401aa5a132fa",
+            baseUrl: 'https://api.weatherbit.io/v2.0/forecast/daily',
+            imageBaseUrl: 'https://www.weatherbit.io/static/img/icons/',
+            data: {},
+            forecast: [],
+            icons: {
+                uparrow: "./assets/icons/arrow-up.png",
+                downarrow: "./assets/icons/arrow-down.png"
+            }
+        },
+        methods: {
+            submitForm() {
+                fetch(`${this.baseUrl}?city=${this.cityName}&key=${this.apiKey}&lang=fr&days=7`)
+                .then((response) => {
+                    this.cityName = "";
+                    return response.json()
+                })
+                .then(this.saveData)
+                .catch((err) => {
+                    console.log(err)
+                    location.reload()
+                })
+            },
+            saveData(results) {
+        this.data = results
+        this.forecast = results.data
+        this.forecast.shift();
+        }
+        },
+        });
 </script>    
 </body>
 </html>
