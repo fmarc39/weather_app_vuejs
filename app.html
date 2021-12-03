@@ -17,50 +17,38 @@
         <div class="container">
             <div class="container__header">
                 <h1 class="header__app-title">Weather App</h1>
-                <form id="city">
+                <form id="city" @submit.prevent="submitForm">
                 <p>
                     <input type="text" class="header__input" v-model="cityName" placeholder="Search a city...">
-                    {{cityName}}
                 </p>
                 </form>
             </div>
-            <div class="container__result-box">
+            <div v-if="data.data" class="container__result-box">
                 <div class="result-box__day-weather">
-                    <p class="day-weather__city-name">Paris, FR</p>
-                    <img class="day-weather__icon" :src="icons.cloud">
-                    <p class="day-weather__act-temp">30 °C</p>
+                    <p class="day-weather__city-name">{{data.city_name}}, {{data.country_code}}</p>
+                    <img class="day-weather__icon" :src=`${imageBaseUrl}${data.data[0].weather.icon}.png`>
+                    <p class="day-weather__text-weather">{{data.data[0].weather.description}}</p>
+                    <p class="day-weather__act-temp">{{data.data[0].temp}} °C</p>
                     <div class="day-weather__min-max-temps">
                         <div class="min-max-temps__min">
                             <img class="min__icon" :src='icons.downarrow'>
-                            <p class="min__temp"> 12 °C</p>
+                            <p class="min__temp"> {{data.data[0].min_temp}} °C</p>
                         </div>
                         <div class="min-max-temps__max">
                             <img class="max__icon" :src='icons.uparrow'>
-                            <p class="max__temp"> 33 °C</p>
+                            <p class="max__temp"> {{data.data[0].high_temp}} °C</p>
                         </div>
                     </div>
                 </div>
                 <div class="result-box__week-weather">
-                    <div class="week-weather__box">
-                        <img class="week-weather__icon" :src="icons.cloud">
-                        <p class="week-weather__act-temp">30 °C</p>
-                    </div>
-                    <div class="week-weather__box">
-                        <img class="week-weather__icon" :src="icons.cloud">
-                        <p class="week-weather__act-temp">30 °C</p>
-                    </div>   <div class="week-weather__box">
-                        <img class="week-weather__icon" :src="icons.cloud">
-                        <p class="week-weather__act-temp">30 °C</p>
-                    </div>   <div class="week-weather__box">
-                        <img class="week-weather__icon" :src="icons.cloud">
-                        <p class="week-weather__act-temp">30 °C</p>
-                    </div>   <div class="week-weather__box">
-                        <img class="week-weather__icon" :src="icons.cloud">
-                        <p class="week-weather__act-temp">30 °C</p>
-                    </div>   <div class="week-weather__box">
-                        <img class="week-weather__icon" :src="icons.cloud">
-                        <p class="week-weather__act-temp">30 °C</p>
-                    </div>  
+                    <template v-for="day in data.data">
+                        <div class="week-weather__box">
+                            <img class="week-weather__icon" :src=`${imageBaseUrl}${day.weather.icon}.png`>
+                            <p class="week-weather__text-weather">{{day.weather.description}}</p>
+                            <p class="week-weather__act-temp">{{day.temp}} °C</p>
+                        </div>
+                    </template>
+                   
                 </div>
             </div>
         </div>
@@ -69,17 +57,36 @@
     var app = new Vue({
   el: "#app",
   data: {
-    user: "Snoopy",
     cityName: "",
+    apiKey:"54dfb5713ed64c58a168401aa5a132fa",
+    baseUrl: 'https://api.weatherbit.io/v2.0/forecast/daily',
+    imageBaseUrl: 'https://www.weatherbit.io/static/img/icons/',
+    data: {},
+    forecast: [],
     icons: {
-        cloud: "./assets/icons/cloud.png",
         uparrow: "./assets/icons/arrow-up.png",
         downarrow: "./assets/icons/arrow-down.png"
     }
   },
-});
-</script>
+  methods: {
+    submitForm() {
+        fetch(`${this.baseUrl}?city=${this.cityName}&key=${this.apiKey}&lang=fr&days=7`)
+        .then((response) => {
+            this.cityName = "";
+            return response.json()
+        })
+        .then(this.setResult);
+    },
 
-    
+    setResult(results) {
+this.data = results
+this.forecast = results.data
+this.forecast.shift();
+console.log(this.data)
+console.log(this.forecast)
+}
+},
+});
+</script>    
 </body>
 </html>

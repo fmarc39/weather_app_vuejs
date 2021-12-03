@@ -68,6 +68,11 @@
     margin-bottom: 1rem;
 }
 
+.day-weather__text-weather {
+    font-size: 2em;
+    margin-bottom: 2rem;
+}
+
 .min-max-temps__min, .min-max-temps__max {
     display: flex;
     align-items: center;
@@ -92,6 +97,11 @@
     background-color: rgba(255, 255, 255, 0.027);
     border-radius: 10px;
     padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.week-weather__text-weather {
+    margin-bottom: 1rem;
 }
 
 .min__icon {
@@ -126,15 +136,12 @@
     #app {
         font-size: 1.1rem;
     }
-
 }
 
 @media screen and (max-width: 1250px) {
     #app {
         font-size: 1rem;
     }
-
-
 }
 
 @media screen and (max-width: 900px) {
@@ -154,22 +161,16 @@
         width: 90%;
         margin-bottom: 1.5rem;
     }
-
-
 }
 
 @media screen and (max-width: 600px) {
     #app {
         font-size: .65rem;
     }
-
-
 }
 
 @media screen and (max-width: 480px) {
     #app {
         font-size: .6rem;
     }
-
-
 }
